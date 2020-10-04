@@ -11,10 +11,28 @@ const rl = readline.createInterface({
 });
 
 
-const pigLatin = (word) => {
+function pigLatin(word) {
+  word = word.toLowerCase()
+  const vowels = ["a", "e", "i", "o", "u"];
+  // Initialize vowel index to 0
+  let vowelIndex = 0;
 
-  // Your code here
-
+  if (vowels.includes(word[0])) {
+    // Is first letter is a vowel?
+    return word + "way";
+  } else {
+    // Is it a consonant?
+    for (let char of word) {
+      // If consanant loop through until first vowel is found
+      if (vowels.includes(char)) {
+        // Store the index at which the first vowel exists
+        vowelIndex = word.indexOf(char);
+        break;
+      }
+    }
+    // Return the final word 
+    return word.slice(vowelIndex) + word.slice(0, vowelIndex) + "ay";
+  }
 }
 
 // the first function called in the program to get an input from the user
