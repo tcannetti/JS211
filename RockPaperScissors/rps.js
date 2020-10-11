@@ -72,6 +72,12 @@ if (typeof describe === 'function') {
       assert.equal(rockPaperScissors('Paper', 'SCISSORS'), "Hand two wins!");
       assert.equal(rockPaperScissors('rock ', 'sCiSsOrs'), "Hand one wins!");
     });
+    it('should detect if something other than rock paper or scissors is input', () => {
+      assert.equal(rockPaperScissors('gun', 'bomb'), "Only rock, paper, or scissors will work here!");
+    });
+    it('should detect Dwayne the Rock Johnson is not an option', () => {
+      assert.equal(rockPaperScissors('the rock', 'dwayne', 'johnson'), "I can smell what The Rock is cooking, and it's an unfair advantage!");
+    });
   });
 } else {
 
