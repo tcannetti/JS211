@@ -75,7 +75,20 @@ const checkForWin = () => {
 
 const ticTacToe = (row, column) => {
   // Your code here to place a marker on the board
+  if (board[row][column] == " "){
+    board[row][column] = playerTurn;
+    if (playerTurn == "X"){
+      playerTurn = "O"
+    } else {
+      playerTurn = "X"
+    }
+  } else {
+    console.log("Seat's taken, try another space!")
+  }
   // then check for a win
+  if (checkForWin() == true){
+    console.log(playerTurn + " wins!")
+  }
 }
 
 const getPrompt = () => {
