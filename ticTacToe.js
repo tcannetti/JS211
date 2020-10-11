@@ -34,18 +34,43 @@ const printBoard = () => {
 
 const horizontalWin = () => {
   // Your code here to check for horizontal wins
+  if (
+    (board[0][0] == board[0][1] && board[0][0] == board [0][2]) ||
+    (board [1][0] == board [1][1] && board[1][0] == board[1][2]) ||
+    (board[2][0] == board[2][1] && board[2][0] == board[2][2]))
+    {
+      return true;
+    }
 }
 
 const verticalWin = () => {
   // Your code here to check for vertical wins
+  if (
+    (board[0][0] == board[1][0] && board[0][0] == board [2][0]) ||
+    (board[0][1] == board [1][1] && board[1][0] == board[2][1]) ||
+    (board[0][2] == board[1][2] && board[2][0] == board[2][2]))
+    {
+      return true;
+    }
 }
 
 const diagonalWin = () => {
   // Your code here to check for diagonal wins
+  if (
+    (board[0][0] == board[1][1] && board[0][0] == board[2][2]) ||
+    (board[0][2] == board[1][1] && board[0][2] == board[2][0])
+  )
+  {
+    return true;
+  }
 }
 
 const checkForWin = () => {
   // Your code here call each of the check for types of wins
+  if (horizontalWin() || verticalWin() || diagonalWin())
+  {
+    return true;
+  }
 }
 
 const ticTacToe = (row, column) => {
