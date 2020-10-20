@@ -39,38 +39,44 @@ b. Method:
 
 class Vehicle{
   // code here
-  constructor(name, type, crew){
+  constructor(name, type){
     this.name = name;
     this.type = type;
-    this.crew - [];
+    this.crew = [];
+  }
+  ready(){
+    // here goes code 
   }
 }
 
 class CrewMember{
   // code here 
-  constructor(name, job, vehicle){
+  constructor(name, job){
     this.name = name;
     this.job = job;
-    this.vehicle = vehicle;
+    this.vessel = null;
   }
   board(v){
-    this.vehicle = v.type;
+    this.vessel = v.type;
     v.crew.push(this);
-  }
+  } 
 }
 
 
 let p1 = new Vehicle("B123", "Plane");
-let boat1 = new Vehicle("USS Grant", "Boat")
+let boat1 = new Vehicle("USS Grant", "Boat");
+let heli = new Vehicle ("Batcopter", "Heli");
+let steve = new CrewMember("Steve", "Pilot");
+let mary = new CrewMember("Mary", "Captain");
+let john = new CrewMember("John", "Heli Pilot");
 
-p1.ready(); // should be false
+heli.ready(); // should be false
 boat1.ready(); // should be false
 
-let john = new CrewMember("John", "Pilot");
 
-john.board(p1); // this is the tricky part
+john.board(heli); // this is the tricky part
 
-p1.ready(); // should be true 
+heli.ready(); // should be true 
 
 
 
