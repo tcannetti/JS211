@@ -1,0 +1,24 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pig Latin GUI</title>
+  <link rel="stylesheet" href="pigLatin.css">
+</head>
+<body>
+  <header>
+    <h1>Pig Latin Generator</h1>
+  </header>
+  <section>
+    <h2>Convert any word!</h2>
+    <textarea id="input" type="text" placeholder="Input Here!" cols="18" rows="4"></textarea>
+    <br>
+    <button onclick="pigLatin()" type="button" id="convert">Convert</button>
+    <br>
+    <h3 id="output"></h3>
+    <br>
+    <button onclick="reset()" type="button" id="reset">Reset Word</button>
+  </section>
+<script src="./pigLatin.js"></script>
+</body>
+</html>
