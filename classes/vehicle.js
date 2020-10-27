@@ -47,6 +47,13 @@ class Car{
   }
 
   /**
+   * for cars, the advertised MPG is the actual MPG
+   */
+  actualMpg(){
+    return this.mpg;
+  }
+
+  /**
    * this method will update the current fuel, and will enforce the capacity defined by the tankSize
    * @param {number} gallons numbers of gallons to add to car
    */
@@ -72,7 +79,7 @@ class Car{
    */
   distanceToEmpty(){
     // know we have to use MPG and current fuel
-    return this.mpg * this.currentFuel;
+    return this.actualMpg() * this.currentFuel;
   }
 
 
@@ -90,7 +97,7 @@ class Car{
     let distanceTravelled = maxDistance < miles ? maxDistance : miles;
 
     // 31mpg, drove 31 miles,-> 1 gallon used
-    let fuelUsed = distanceTravelled/this.mpg;
+    let fuelUsed = distanceTravelled/this.actualMpg();
 
     this.currentFuel = this.currentFuel - fuelUsed;
     this.odometer = this.odometer + distanceTravelled;
@@ -99,7 +106,53 @@ class Car{
 }
 
 
+class Truck extends Car {
 
+  // this is a flag to tell us if the truck is loaded or not
+  loaded;
+
+  /**
+   * 
+   * @param {string} inputId the id of the car
+   * @param {number} inputMpg miles per gallon economy
+   * @param {number} inputTankSize size of tank in gallons
+   * @param {number} inputBedSize size of the truck bed in feet
+   */
+  constructor(inputId, inputMpg, inputTankSize, inputBedSize){
+    super(inputId, inputMpg, inputTankSize);
+    this.bedSize = inputBedSize;
+    this.loaded = false;
+  }
+
+  load(){
+    this.loaded = true;
+  }
+
+  unLoad(){
+    this.loaded = false;
+  }
+
+
+  /**
+   * if the truck is loaded, return 
+   */
+  actualMpg(){
+    let unloadedMpg = super.actualMpg();
+    if(this.loaded == true){
+      return unloadedMpg * .85;
+    } else {
+      return unloadedMpg;
+    }
+  }
+}
+
+
+let t = new Truck('2345', 20, 40, 8);
+t.addFuel(10);
+t.load();
+t.drive(50);
+console.log('after driving 50 miles you can go ', t.distanceToEmpty(), " more miles.")
+console.log("This truck has a ", t.bedSize, " foot bed.");
 
 
 
