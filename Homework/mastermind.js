@@ -29,7 +29,11 @@ const getRandomInt = (min, max) => {
 }
 
 const generateHint = () =>  {
-  // your code here
+  // code for holding hints
+  let correct = 0;
+  // right letter, right spot
+  let somewhat = 0;
+  // right letter, wrong spot
 }
 
 const mastermind = (guess) => {
