@@ -46,6 +46,20 @@ class Vehicle{
   }
   ready(){
     // here goes code 
+    // loops through with forEach to check each object in all arrays and prepare for takeoff with if/else
+    this.crew.forEach(function(crewMem){
+      if((crewMem.job === "Conductor" && crewMem.vessel.type === "Train") ||
+      (crewMem.job === "Pilot" && crewMem.vessel.type === "Plane") ||
+      (crewMem.job === "Captain" && crewMem.vessel.type === "Boat")){
+        console.log(`The ${crewMem.job}, ${crewMem.name} is on board the ${crewMem.vessel.type}! Ready to Depart!`)
+        return true
+        // if one of these passes return true with message
+      } else {
+        return false;
+        // otherwise return false
+      }
+    })
+    
   }
 }
 
@@ -56,27 +70,29 @@ class CrewMember{
     this.job = job;
     this.vessel = null;
   }
-  board(v){
-    this.vessel = v.type;
-    v.crew.push(this);
+  board(vessel){
+    this.vessel = vessel.type;
+    vessel.crew.push(this);
   } 
 }
 
+// Vehicle Classes
+let train = new Vehicle ("Thomas", "Train");
+let plane = new Vehicle("B123", "Plane");
+let boat = new Vehicle("USS Grant", "Boat");
 
-let p1 = new Vehicle("B123", "Plane");
-let boat1 = new Vehicle("USS Grant", "Boat");
-let heli = new Vehicle ("Batcopter", "Heli");
-let steve = new CrewMember("Steve", "Pilot");
+train.ready(); // should be false
+plane.ready(); // should be false
+
+// Crew Classes
+let john = new CrewMember("John", "Conductor");
 let mary = new CrewMember("Mary", "Captain");
-let john = new CrewMember("John", "Heli Pilot");
-
-heli.ready(); // should be false
-boat1.ready(); // should be false
+let steve = new CrewMember("Steve", "Pilot");
 
 
-john.board(heli); // this is the tricky part
+john.board(train); // this is the tricky part
 
-heli.ready(); // should be true 
+train.ready(); // should be true 
 
 
 
