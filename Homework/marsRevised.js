@@ -77,7 +77,7 @@ class CrewMember{
 }
 
 // Vehicle Classes
-let train = new Vehicle ("Thomas", "Train");
+let train = new Vehicle("Thomas", "Train");
 let plane = new Vehicle("B123", "Plane");
 let boat = new Vehicle("USS Grant", "Boat");
 
