@@ -62,9 +62,9 @@ class BankAccount {
     let balance = 0;
     // forEach loop to traverse through each array
     this.transactions.forEach((transaction) => {
-      balance = transaction.amt + balance;
+      balance = balance + transaction.amt;
     })
-    return this.balance;
+    return balance;
   }
 
 }
