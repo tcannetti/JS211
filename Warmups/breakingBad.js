@@ -1,6 +1,6 @@
 console.log("loading breakingBad.js");
 
-let getWalter = function(){
+function getDealer(){
 
   // let randomNumber = Math.random();
   let fetchPromise = fetch('https://www.breakingbadapi.com/api/character/random');
