@@ -68,20 +68,20 @@ const redTeam = []
 
 
 
-class dodgeBallPlayer {
-  canThrowBall = true;
-  canDodgeBall = true;
-  hasPaid = true;
-  isHealthy = true;
-  yearsExperience = true;
-  constructor(id, name, age){
-    this.id = id;
-    this.name = name;
-    this.age = age;
+class DodgeballPlayer {
+  constructor(person){
+    this.id = person.id;
+    this.name = person.name;
+    this.age = person.age;
   }
+    canThrowBall = true;
+    canDodgeBall = true;
+    isHealthy = true;
+    hasPaid = true;
+    yearsExperience = true;
 }
 
-class Teammate extends dodgeBallPlayer {
+class Teammate extends DodgeballPlayer {
   team; // the color team the Teammate will be assigned to
   constructor(id, name, age, team){
     super(id, name, age);
@@ -108,7 +108,7 @@ const listPeopleChoices = () => {
     // adds text to said button for call to action reasons
     button.innerHTML = "Make Player"
     // function to make it clickable
-    button.addEventListener('click', function() {makePlayer(person.id)} )
+    button.addEventListener('click', function() {makePlayer(person)} )
     // appends the new player to the li
     li.appendChild(button)
     li.appendChild(document.createTextNode(person.name + " - " + person.skillSet))
@@ -117,6 +117,10 @@ const listPeopleChoices = () => {
 }
 
 // function for the button that should create a new dodgeBallPlayer object that can be pushed 
-const makePlayer = (id) => {
-  console.log(`li ${id} was clicked!`)
+const makePlayer = (person) => {
+  console.log(person)
+  let newPlayer = new DodgeballPlayer(person)
+  console.log(newPlayer)
+  listOfPlayers.push(newPlayer.name)
+  console.log(listOfPlayers)
 }
