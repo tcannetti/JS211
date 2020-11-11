@@ -82,9 +82,8 @@ class DodgeballPlayer {
 }
 
 class Teammate extends DodgeballPlayer {
-  team; // the color team the Teammate will be assigned to
-  constructor(id, name, age, team){
-    super(id, name, age);
+  constructor(person, team){
+    super(person);
     this.team = team;
     // if else statement to declare the mascot based on team color
     if(team === "red"){
@@ -100,12 +99,14 @@ class Teammate extends DodgeballPlayer {
 const listPeopleChoices = () => {
   // grabs the UL by its ID 'people'
   const listElement = document.getElementById('people')
+  // prevent the list people button from populating more than once by resetting the HTML
+  listElement.innerHTML = '' 
   arrOfPeople.map(person => {
     // creates an li to add the person to
     const li = document.createElement("li")
     // creates a button to move the person to a player
     const button = document.createElement("button")
-    // adds text to said button for call to action reasons
+    // adds text to said button for call to action 
     button.innerHTML = "Make Player"
     // function to make it clickable
     button.addEventListener('click', function() {makePlayer(person)} )
@@ -119,8 +120,35 @@ const listPeopleChoices = () => {
 // function for the button that should create a new dodgeBallPlayer object that can be pushed 
 const makePlayer = (person) => {
   console.log(person)
+  // create a new player invoking the DodgeballPlayer class
   let newPlayer = new DodgeballPlayer(person)
   console.log(newPlayer)
-  listOfPlayers.push(newPlayer.name)
+  // push that player to the listOfPlayers array
+  listOfPlayers.push(newPlayer)
   console.log(listOfPlayers)
+  // create a variable for easy use of players UL
+  let players = document.getElementById("players");
+  // create an li in the HTML for the player to be appended to
+  let li = document.createElement("li");
+  // add by name
+  li.innerText = `${newPlayer.name}`
+  // create buttons for the players to move to red or blue
+  let blueButton = document.createElement("button");
+  let redButton = document.createElement("button");
+  // red button functionality
+  redButton.innerText = "Red Team";
+  redButton.className = "red-team";
+  // button function with click as event listener
+  redButton.addEventListener('click', function() {makePlayer(person)});
+
+  // blue button functionality
+  blueButton.innerText = "Blue Team";
+  blueButton.className = "blue-team";
+  // button function with click as event listener
+  blueButton.addEventListener('click', function() {makePlayer(person)});
+
+  // append all to the page
+  players.appendChild(li);
+  li.appendChild(redButton);
+  li.appendChild(blueButton);
 }
