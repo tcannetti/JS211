@@ -85,12 +85,6 @@ class Teammate extends DodgeballPlayer {
   constructor(person, team){
     super(person);
     this.team = team;
-    // if else statement to declare the mascot based on team color
-    // if(team === "red"){
-    //   this.mascot = "Devils"
-    // } else if (team === "blue") {
-    //     this.mascot = "Angels"
-    //   }
     }
   }
 
@@ -175,7 +169,7 @@ const makePlayer = (person) => {
   arrOfPeople.splice(peopleIndex, 1)
   // refresh list 
   listPeopleChoices();
-  
+
   // create a variable for easy use of players UL
   // let players = document.getElementById("players");
   // // create an li in the HTML for the player to be appended to
