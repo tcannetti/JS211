@@ -78,7 +78,7 @@ class DodgeballPlayer {
     canDodgeBall = true;
     isHealthy = true;
     hasPaid = true;
-    yearsExperience = true;
+    yearsExperience = this.age - 2;
 }
 
 class Teammate extends DodgeballPlayer {
@@ -86,11 +86,11 @@ class Teammate extends DodgeballPlayer {
     super(person);
     this.team = team;
     // if else statement to declare the mascot based on team color
-    if(team === "red"){
-      this.mascot = "Devils"
-    } else if (team === "blue") {
-        this.mascot = "Angels"
-      }
+    // if(team === "red"){
+    //   this.mascot = "Devils"
+    // } else if (team === "blue") {
+    //     this.mascot = "Angels"
+    //   }
     }
   }
 
@@ -139,16 +139,49 @@ const makePlayer = (person) => {
   redButton.innerText = "Red Team";
   redButton.className = "red-team";
   // button function with click as event listener
-  redButton.addEventListener('click', function() {makePlayer(person)});
+  redButton.addEventListener('click', function() {addToTeam(person)});
 
   // blue button functionality
   blueButton.innerText = "Blue Team";
   blueButton.className = "blue-team";
   // button function with click as event listener
-  blueButton.addEventListener('click', function() {makePlayer(person)});
+  blueButton.addEventListener('click', function() {addToTeam(person)});
 
   // append all to the page
   players.appendChild(li);
   li.appendChild(redButton);
   li.appendChild(blueButton);
 }
+
+
+const addToTeam = (player, color) => {
+  // first need to discover which team button was selected
+  if(color == "blue"){
+    // new player object with color selected
+    let newTeamPlayer = new Teammate(player.id, player.name, color)
+    // push to blueTeam array
+    blueTeam.push(newTeamPlayer)
+    // declare team variable and push to the DOM
+    let team = document.getElementById("blue");
+  } else {
+      // create new team player object based on color and name
+      newTeamPlayer = new Teammate(player.id, player.name, color)
+      // push to red team array
+      redTeam.push(newTeamPlayer)
+      team = document.getElementById("red")
+    }
+    console.log(blueTeam);
+    console.log(redTeam);
+    // finally create the LI for the newTeamPlayers to move to
+
+    let li = document.createElement("li")
+    // create a string for the newTeamPlayer to append to th li 
+    li.appendChild(document.createTextNode(newTeamPlayer.name));
+    // append it
+    team.appendChild(li)
+
+    // remove the selected player from the previous list ???
+    // ??
+  }
+
+
