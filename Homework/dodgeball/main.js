@@ -85,8 +85,6 @@ class DodgeballPlayer {
 class Teammate extends DodgeballPlayer {
   constructor(person, team){
     super(person);
-    this.id = person.id;
-    this.name = person.name;
     this.team = team;
     }
   }
@@ -107,6 +105,7 @@ const listPeopleChoices = () => {
     button.innerHTML = "Make Player"
     // function to make it clickable
     button.addEventListener('click', function() {makePlayer(person)} )
+    li.id = "person" + person.id
     // appends the new player to the li
     li.appendChild(button)
     li.appendChild(document.createTextNode(person.name + " - " + person.skillSet))
@@ -121,30 +120,31 @@ const listPlayerChoices = () => {
   listElement.innerHTML = '' 
   listOfPlayers.map(player => {
     // creates an li to add the player to
-    const li = document.createElement("li")
+    // const li = document.createElement("li")
     
-    let blueButton = document.createElement("button");
-    let redButton = document.createElement("button");
+    // let blueButton = document.createElement("button");
+    // let redButton = document.createElement("button");
 
-    redButton.innerText = "Red Team";
-    redButton.className = "red-team";
-    // button function with click as event listener
-    redButton.addEventListener('click', function() {addToTeam(player, 'red')});
+    // redButton.innerText = "Red Team";
+    // redButton.className = "red-team";
+    // // button function with click as event listener
+    // redButton.addEventListener('click', function() {addToTeam(player, 'red')});
   
-    // blue button functionality
-    blueButton.innerText = "Blue Team";
-    blueButton.className = "blue-team";
-    // button function with click as event listener
-    blueButton.addEventListener('click', function() {addToTeam(player, 'blue')});
+    // // blue button functionality
+    // blueButton.innerText = "Blue Team";
+    // blueButton.className = "blue-team";
+    // // button function with click as event listener
+    // blueButton.addEventListener('click', function() {addToTeam(player, 'blue')});
+    // // assign an id so that they can be removed later
+    // li.id = 'player' + player.id;
+    // // append all to the page
+    // players.appendChild(li);
+    // li.appendChild(redButton);
+    // li.appendChild(blueButton);
     
-    // append all to the page
-    players.appendChild(li);
-    li.appendChild(redButton);
-    li.appendChild(blueButton);
-    
-    // appends the new player to the li
-    // li.appendChild(button)
-    li.appendChild(document.createTextNode(player.name + " - " + player.skillSet))
+    // // appends the new player to the li
+    // // li.appendChild(button)
+    // li.appendChild(document.createTextNode(player.name + " - " + player.skillSet))
     // listElement.append(li)
   })
 }
@@ -158,7 +158,7 @@ const makePlayer = (person) => {
   // push that player to the listOfPlayers array
   listOfPlayers.push(newPlayer)
   console.log(listOfPlayers)
-  listPlayerChoices();
+  // listPlayerChoices();
   // find index of person to player
   let peopleIndex = arrOfPeople.findIndex(function(element){
     return person.id == element.id
@@ -166,7 +166,35 @@ const makePlayer = (person) => {
   // remove them from the previous list when they are moved 
   arrOfPeople.splice(peopleIndex, 1)
   // refresh list 
-  listPeopleChoices();
+  const li = document.createElement("li")
+    
+  let blueButton = document.createElement("button");
+  let redButton = document.createElement("button");
+
+  redButton.innerText = "Red Team";
+  redButton.className = "red-team";
+  // button function with click as event listener
+  redButton.addEventListener('click', function() {addToTeam(person, 'red')});
+
+  // blue button functionality
+  blueButton.innerText = "Blue Team";
+  blueButton.className = "blue-team";
+  // button function with click as event listener
+  blueButton.addEventListener('click', function() {addToTeam(person, 'blue')});
+  // assign an id so that they can be removed later
+  li.id = 'player' + person.id;
+  // append all to the page
+  players.appendChild(li);
+  li.appendChild(redButton);
+  li.appendChild(blueButton);
+  
+  // appends the new player to the li
+  // li.appendChild(button)
+  li.appendChild(document.createTextNode(person.name + " - " + person.skillSet))
+  document.getElementById('person' + person.id).remove();
+
+
+
 
   // create a variable for easy use of players UL
   // let players = document.getElementById("players");
@@ -202,14 +230,14 @@ const addToTeam = (player, color) => {
   let team;
   if(color == "blue"){
     // new player object with color selected
-    newTeamPlayer = new Teammate(player.id, player.name, color)
+    newTeamPlayer = new Teammate(player, color)
     // push to blueTeam array
     blueTeam.push(newTeamPlayer)
     // declare team variable and push to the DOM
     team = document.getElementById("blue");
   } else {
       // create new team player object based on color and name
-      newTeamPlayer = new Teammate(player.id, player.name, color)
+      newTeamPlayer = new Teammate(player, color)
       // push to red team array
       redTeam.push(newTeamPlayer)
       team = document.getElementById("red")
@@ -223,9 +251,10 @@ const addToTeam = (player, color) => {
     li.appendChild(document.createTextNode(newTeamPlayer.name));
     // append it
     team.appendChild(li)
-
+    // remove the player from the player pool after they are added 
+    document.getElementById('player' + player.id).remove();
     // remove the selected player from the previous list ???
-    // ??
+    // ?
   }
 
 
