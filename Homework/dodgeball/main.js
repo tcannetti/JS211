@@ -1,9 +1,3 @@
-/* Code Plan
-1. Create a class for Player, 
-
-*/
-
-
 
 const arrOfPeople = [
   {
@@ -192,35 +186,6 @@ const makePlayer = (person) => {
   // li.appendChild(button)
   li.appendChild(document.createTextNode(person.name + " - " + person.skillSet))
   document.getElementById('person' + person.id).remove();
-
-
-
-
-  // create a variable for easy use of players UL
-  // let players = document.getElementById("players");
-  // // create an li in the HTML for the player to be appended to
-  // let li = document.createElement("li");
-  // // add by name
-  // li.innerText = `${newPlayer.name}`
-  // create buttons for the players to move to red or blue
-  // let blueButton = document.createElement("button");
-  // let redButton = document.createElement("button");
-  // // red button functionality
-  // redButton.innerText = "Red Team";
-  // redButton.className = "red-team";
-  // // button function with click as event listener
-  // redButton.addEventListener('click', function() {addToTeam(person)});
-
-  // // blue button functionality
-  // blueButton.innerText = "Blue Team";
-  // blueButton.className = "blue-team";
-  // // button function with click as event listener
-  // blueButton.addEventListener('click', function() {addToTeam(person)});
-
-  // append all to the page
-  // players.appendChild(li);
-  // li.appendChild(redButton);
-  // li.appendChild(blueButton);
 }
 
 
@@ -258,3 +223,5 @@ const addToTeam = (player, color) => {
   }
 
 
+// TESTS
+//
