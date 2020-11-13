@@ -224,4 +224,11 @@ const addToTeam = (player, color) => {
 
 
 // TESTS
-//
+// I would test that my makePlayer function works.
+// I would check that the length of arrayOfPlayers had increased by 1 after makePlayer is called on the player parameter. 
+
+// I would check makePlayer again to see if not only is it adding to arrayOfPlayers but also that it is splicing the correct person out of the arrayOfPeople.
+// i would loop through arrayOfPeople by the person.name and compare that to the listOfPlayers array with the player.name; using an if statement decide if there is only one instance of that DodgeBallPlayer
+
+// I would check that the addToTeam function is adding the color paramter to the new Teammate class.
+// I would loop through the redTeam or blueTeam array and check that the Teammate class had been passed the correct color. if statement again comparing the redTeam array to player.color & blueTeam array doing the same. 
