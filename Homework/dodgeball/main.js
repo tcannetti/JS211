@@ -73,6 +73,7 @@ class DodgeballPlayer {
     this.id = person.id;
     this.name = person.name;
     this.age = person.age;
+    this.skillset = person.skillset;
   }
     canThrowBall = true;
     canDodgeBall = true;
@@ -84,6 +85,8 @@ class DodgeballPlayer {
 class Teammate extends DodgeballPlayer {
   constructor(person, team){
     super(person);
+    this.id = person.id;
+    this.name = person.name;
     this.team = team;
     }
   }
@@ -119,12 +122,7 @@ const listPlayerChoices = () => {
   listOfPlayers.map(player => {
     // creates an li to add the player to
     const li = document.createElement("li")
-    // creates a button to move the person to a player
-    // const button = document.createElement("button")
-    // adds text to said button for call to action 
-    // button.innerHTML = "Make Player"
-    // function to make it clickable
-    // button.addEventListener('click', function() {makePlayer(player)} )
+    
     let blueButton = document.createElement("button");
     let redButton = document.createElement("button");
 
@@ -139,10 +137,10 @@ const listPlayerChoices = () => {
     // button function with click as event listener
     blueButton.addEventListener('click', function() {addToTeam(player, 'blue')});
     
-      // append all to the page
-      players.appendChild(li);
-      li.appendChild(redButton);
-      li.appendChild(blueButton);
+    // append all to the page
+    players.appendChild(li);
+    li.appendChild(redButton);
+    li.appendChild(blueButton);
     
     // appends the new player to the li
     // li.appendChild(button)
